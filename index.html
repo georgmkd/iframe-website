@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Management — Trellis Law (Usetrace Test)</title>
+  <title>Case Management — CaseFlow (Usetrace Test)</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,7 +15,7 @@
 
     /* ── Top nav ───────────────────────────────────────────────────── */
     header {
-      background: #1a3a5c;
+      background: #2c4a6e;
       color: #fff;
       padding: 12px 24px;
       display: flex;
@@ -47,7 +47,7 @@
       color: #666;
       margin-bottom: 16px;
     }
-    .breadcrumb a { color: #1a3a5c; text-decoration: none; }
+    .breadcrumb a { color: #2c4a6e; text-decoration: none; }
     .breadcrumb a:hover { text-decoration: underline; }
     .breadcrumb span { margin: 0 6px; }
 
@@ -59,12 +59,12 @@
       padding: 20px 24px;
       margin-bottom: 20px;
     }
-    .case-header h1 { font-size: 22px; color: #1a3a5c; margin-bottom: 6px; }
+    .case-header h1 { font-size: 22px; color: #2c4a6e; margin-bottom: 6px; }
     .case-header .meta { font-size: 13px; color: #555; line-height: 1.8; }
     .case-header .badge {
       display: inline-block;
       background: #e8f0fe;
-      color: #1a3a5c;
+      color: #2c4a6e;
       border-radius: 4px;
       padding: 2px 8px;
       font-size: 12px;
@@ -86,7 +86,7 @@
       padding: 12px 20px;
       font-size: 14px;
       font-weight: 600;
-      color: #1a3a5c;
+      color: #2c4a6e;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -107,16 +107,14 @@
     }
     .docket-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
     .docket-table tr:hover td { background: #f8f9fa; }
-    .docket-table a { color: #1a3a5c; text-decoration: none; }
+    .docket-table a { color: #2c4a6e; text-decoration: none; }
     .docket-table a:hover { text-decoration: underline; }
 
-    /* ── Judge Bio section (article 4) ────────────────────────────── */
+    /* ── Judge Profile section (article 4) ─────────────────────────── */
     #misc-section {
       padding: 20px;
     }
-    .paragraph {
-      /* matches the .paragraph class used in the DOM structure test */
-    }
+    .paragraph { }
     .iframe-wrapper {
       position: relative;
       border: 1px solid #dde3ea;
@@ -142,7 +140,7 @@
       position: fixed;
       bottom: 16px;
       right: 16px;
-      background: #1a3a5c;
+      background: #2c4a6e;
       color: #fff;
       font-size: 12px;
       padding: 8px 14px;
@@ -157,7 +155,7 @@
 
 <!-- ── Top Navigation ──────────────────────────────────────────────── -->
 <header>
-  <span class="logo">⚖ Trellis Law</span>
+  <span class="logo">📋 CaseFlow</span>
   <nav>
     <a href="#">Cases</a>
     <a href="#">Courts</a>
@@ -172,20 +170,20 @@
   <!-- Breadcrumb -->
   <div class="breadcrumb">
     <a href="#">Home</a><span>›</span>
-    <a href="#">Sacramento County Superior Court</a><span>›</span>
-    <a href="#">Case #34-2008-00023098</a>
+    <a href="#">Northgate County Superior Court</a><span>›</span>
+    <a href="#">Case #NCC-2011-00045891</a>
   </div>
 
   <!-- Case header -->
   <div class="case-header">
-    <h1>HAMMER LANE RV et al. v. COUNTY OF SACRAMENTO</h1>
+    <h1>APEX AUTO GROUP et al. v. NORTHGATE MUNICIPALITY</h1>
     <div class="meta">
       <span class="badge">Civil</span>
       <span class="badge">Active</span>
-      Case No. <strong>34-2008-00023098</strong> &nbsp;·&nbsp;
-      Filed: <strong>03/15/2008</strong> &nbsp;·&nbsp;
-      Court: <strong>Sacramento County Superior Court</strong> &nbsp;·&nbsp;
-      Judge: <strong>Hon. David W. Abbott</strong>
+      Case No. <strong>NCC-2011-00045891</strong> &nbsp;·&nbsp;
+      Filed: <strong>07/22/2011</strong> &nbsp;·&nbsp;
+      Court: <strong>Northgate County Superior Court</strong> &nbsp;·&nbsp;
+      Judge: <strong>Hon. Sarah K. Patterson</strong>
     </div>
   </div>
 
@@ -203,20 +201,20 @@
         <tbody>
           <tr>
             <td>Plaintiff</td>
-            <td><a href="/party/hammer-lane-rv">HAMMER LANE RV</a></td>
-            <td>John A. Smith, Esq.</td>
+            <td><a href="/party/apex-auto-group">APEX AUTO GROUP</a></td>
+            <td>Michael R. Torres, Esq.</td>
             <td>Active</td>
           </tr>
           <tr>
             <td>Defendant</td>
-            <td><a href="/party/county-sacramento">COUNTY OF SACRAMENTO</a></td>
-            <td>Jane B. Doe, Esq.</td>
+            <td><a href="/party/northgate-municipality">NORTHGATE MUNICIPALITY</a></td>
+            <td>Linda J. Walsh, Esq.</td>
             <td>Active</td>
           </tr>
           <tr>
             <td>Defendant</td>
-            <td><a href="/party/dept-planning">DEPT. OF PLANNING</a></td>
-            <td>Robert C. Davis, Esq.</td>
+            <td><a href="/party/dept-zoning">DEPT. OF ZONING &amp; PERMITS</a></td>
+            <td>Kevin S. Park, Esq.</td>
             <td>Dismissed</td>
           </tr>
         </tbody>
@@ -237,27 +235,27 @@
         </thead>
         <tbody>
           <tr>
-            <td>05/12/2026</td>
+            <td>05/08/2026</td>
             <td><a href="/doc/motion-summary-judgment">Motion for Summary Judgment</a></td>
-            <td>Smith &amp; Associates</td>
+            <td>Torres &amp; Associates</td>
             <td>Motion</td>
           </tr>
           <tr>
-            <td>04/28/2026</td>
+            <td>04/17/2026</td>
             <td><a href="/doc/opposition-motion">Opposition to Motion</a></td>
-            <td>County Counsel</td>
+            <td>City Counsel</td>
             <td>Opposition</td>
           </tr>
           <tr>
-            <td>03/10/2026</td>
+            <td>03/05/2026</td>
             <td><a href="/doc/demand-jury-trial">Demand for Jury Trial</a></td>
-            <td>Smith &amp; Associates</td>
+            <td>Torres &amp; Associates</td>
             <td>Filing</td>
           </tr>
           <tr>
-            <td>02/14/2026</td>
+            <td>02/01/2026</td>
             <td><a href="/doc/amended-complaint">First Amended Complaint</a></td>
-            <td>Smith &amp; Associates</td>
+            <td>Torres &amp; Associates</td>
             <td>Complaint</td>
           </tr>
         </tbody>
@@ -278,24 +276,24 @@
         </thead>
         <tbody>
           <tr>
-            <td>06/15/2026</td>
+            <td>06/20/2026</td>
             <td>09:00 AM</td>
             <td>Summary Judgment Hearing</td>
-            <td>Dept. 54</td>
+            <td>Dept. 12</td>
             <td><span style="color:#e67e22">Scheduled</span></td>
           </tr>
           <tr>
-            <td>04/01/2026</td>
+            <td>04/09/2026</td>
             <td>10:30 AM</td>
             <td>Case Management Conference</td>
-            <td>Dept. 54</td>
+            <td>Dept. 12</td>
             <td><span style="color:#27ae60">Completed</span></td>
           </tr>
           <tr>
-            <td>01/20/2026</td>
+            <td>01/15/2026</td>
             <td>02:00 PM</td>
             <td>Demurrer Hearing</td>
-            <td>Dept. 54</td>
+            <td>Dept. 12</td>
             <td><span style="color:#27ae60">Completed</span></td>
           </tr>
         </tbody>
@@ -303,18 +301,18 @@
     </div>
   </article>
 
-  <!-- ── Article 4: Judge Bio (contains the iframe) ────────────── -->
+  <!-- ── Article 4: Judge Profile (contains the iframe) ────────── -->
   <article>
     <div class="section-title">
       Judge Profile &amp; Related Rulings
       <span class="arrow">▼</span>
     </div>
 
-    <!-- This is section#misc-section — the stable ancestor ID -->
+    <!-- section#misc-section — stable ancestor ID used by the recorder -->
     <section id="misc-section">
 
       <div class="paragraph">
-        <p class="iframe-label">Judge David W. Abbott — Related case rulings (live iframe)</p>
+        <p class="iframe-label">Judge Sarah K. Patterson — Related case rulings (live iframe)</p>
 
         <!-- ─────────────────────────────────────────────────────────
              THE TARGET IFRAME
@@ -340,9 +338,10 @@
 
 <div id="status-bar">Archetype iframe injected</div>
 
-<!-- ── Simulate HubSpot archetype injection ─────────────────────────
-     HubSpot's tracker injects a hidden iframe into document.body
-     BEFORE the real page iframes finish loading. This means:
+<!-- ── Simulate third-party tracker injection ───────────────────────
+     Third-party analytics scripts inject a hidden iframe into
+     document.body BEFORE the real page iframes finish loading.
+     This means:
        window.frames[0] = archetype (injected here)
        window.frames[1] = Judge Bio (declared in HTML)
      The old recorder bug would pick window.frames[0] (archetype)
@@ -354,7 +353,7 @@
     var archetype = document.createElement('iframe');
     archetype.src       = './archetype.html';
     archetype.title     = 'archetype';          // NOT "Judge Bio"
-    archetype.id        = 'hs-archetype';
+    archetype.id        = 'tracker-archetype';
     archetype.style.cssText = [
       'position:absolute',
       'width:1px',
@@ -371,7 +370,7 @@
 
     // Show confirmation in status bar
     var bar = document.getElementById('status-bar');
-    bar.textContent = '✓ HubSpot archetype iframe injected → window.frames[0]';
+    bar.textContent = '✓ Tracker archetype iframe injected → window.frames[0]';
     bar.style.opacity = '1';
     setTimeout(function() { bar.style.opacity = '0'; }, 3000);
 
