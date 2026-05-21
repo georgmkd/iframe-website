@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Judge Bio — David W. Abbott</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      color: #222;
+      background: #fff;
+      padding: 16px;
+    }
+
+    /* ── Judge profile header ──────────────────────────────────── */
+    .judge-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #e8edf2;
+    }
+    .judge-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #1a3a5c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .judge-info h2 { font-size: 16px; color: #1a3a5c; margin-bottom: 4px; }
+    .judge-info .title { font-size: 12px; color: #666; margin-bottom: 8px; }
+    .judge-info .badges span {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1a3a5c;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    /* ── Search box ────────────────────────────────────────────── */
+    .search-section {
+      margin-bottom: 16px;
+    }
+    .search-section label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    .search-row {
+      display: flex;
+      gap: 8px;
+    }
+    .search-row input[type="text"] {
+      flex: 1;
+      padding: 7px 10px;
+      border: 1px solid #ccd3db;
+      border-radius: 4px;
+      font-size: 13px;
+      outline: none;
+    }
+    .search-row input[type="text"]:focus {
+      border-color: #1a3a5c;
+      box-shadow: 0 0 0 2px rgba(26,58,92,.12);
+    }
+    .search-row select {
+      padding: 7px 10px;
+      border: 1px solid #ccd3db;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .search-row button {
+      padding: 7px 16px;
+      background: #1a3a5c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .search-row button:hover { background: #254e7a; }
+
+    /* ── Rulings table ─────────────────────────────────────────── */
+    .rulings-section h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e8edf2;
+    }
+
+    .rulings-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .rulings-table th {
+      text-align: left;
+      background: #f4f6f9;
+      padding: 7px 10px;
+      color: #555;
+      font-weight: 600;
+      border-bottom: 2px solid #dde3ea;
+      white-space: nowrap;
+    }
+    .rulings-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .rulings-table tr:hover td { background: #f9fbfd; }
+
+    /* The docket-title-link is the main anchor inside each row */
+    a[name="docket-title-link"] {
+      color: #1a3a5c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a[name="docket-title-link"]:hover { text-decoration: underline; }
+
+    .ruling-date { white-space: nowrap; color: #777; }
+    .ruling-type {
+      display: inline-block;
+      background: #f0f4f8;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 11px;
+      color: #555;
+    }
+    .ruling-outcome {
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .outcome-granted  { background: #d4edda; color: #155724; }
+    .outcome-denied   { background: #f8d7da; color: #721c24; }
+    .outcome-pending  { background: #fff3cd; color: #856404; }
+    .outcome-mixed    { background: #d1ecf1; color: #0c5460; }
+
+    /* ── Pagination ────────────────────────────────────────────── */
+    .pagination {
+      display: flex;
+      justify-content: flex-end;
+      gap: 4px;
+      margin-top: 12px;
+    }
+    .pagination button {
+      padding: 4px 10px;
+      border: 1px solid #dde3ea;
+      background: #fff;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #1a3a5c;
+    }
+    .pagination button.active {
+      background: #1a3a5c;
+      color: #fff;
+      border-color: #1a3a5c;
+    }
+    .pagination button:hover:not(.active) { background: #f0f4f8; }
+
+    /* ── Click feedback ────────────────────────────────────────── */
+    #click-result {
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      display: none;
+    }
+    #click-result.show {
+      display: block;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Judge header ─────────────────────────────────────────── -->
+  <div class="judge-header">
+    <div class="judge-avatar">DA</div>
+    <div class="judge-info">
+      <h2>Hon. David W. Abbott</h2>
+      <div class="title">Sacramento County Superior Court — Dept. 54</div>
+      <div class="badges">
+        <span>Civil</span>
+        <span>Probate</span>
+        <span>Complex Litigation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Search / filter ──────────────────────────────────────── -->
+  <div class="search-section">
+    <label for="ruling-search">Search rulings</label>
+    <div class="search-row">
+      <input
+        type="text"
+        id="ruling-search"
+        name="ruling-search"
+        placeholder="Enter case name or ruling text…"
+        data-testid="ruling-search-input"
+      />
+      <select id="ruling-type-filter" name="ruling-type-filter" data-testid="ruling-type-select">
+        <option value="">All types</option>
+        <option value="motion">Motion</option>
+        <option value="demurrer">Demurrer</option>
+        <option value="summary">Summary Judgment</option>
+        <option value="injunction">Injunction</option>
+      </select>
+      <button id="search-btn" type="button">Search</button>
+    </div>
+  </div>
+
+  <!-- ── Rulings list ─────────────────────────────────────────── -->
+  <div class="rulings-section">
+    <h3>Related Rulings by Judge Abbott (24 results)</h3>
+
+    <table class="rulings-table" id="rulings-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Case Name</th>
+          <th>Type</th>
+          <th>Outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── ROW 1 — The TARGET link ───────────────────────── -->
+        <!-- selector: a[href*="/ruling/34-2008-00023098"]       -->
+        <!-- text:     HAMMER LANE RV                           -->
+        <tr>
+          <td class="ruling-date">03/10/2026</td>
+          <td>
+            <a
+              name="docket-title-link"
+              href="/ruling/34-2008-00023098"
+              data-case="34-2008-00023098"
+            >HAMMER LANE RV</a>
+            <div style="font-size:11px;color:#888;margin-top:2px;">
+              HAMMER LANE RV et al. v. COUNTY OF SACRAMENTO — Motion to Dismiss
+            </div>
+          </td>
+          <td><span class="ruling-type">Motion</span></td>
+          <td><span class="ruling-outcome outcome-denied">Denied</span></td>
+        </tr>
+
+        <!-- ── ROW 2 ─────────────────────────────────────────── -->
+        <tr>
+          <td class="ruling-date">02/15/2026</td>
+          <td>
+            <a
+              name="docket-title-link"
+              href="/ruling/34-2021-00301842"
+              data-case="34-2021-00301842"
+            >RIVERSIDE MOTORS LLC</a>
+            <div style="font-size:11px;color:#888;margin-top:2px;">
+              RIVERSIDE MOTORS LLC v. CITY OF DAVIS — Summary Judgment
+            </div>
+          </td>
+          <td><span class="ruling-type">Summary Judgment</span></td>
+          <td><span class="ruling-outcome outcome-granted">Granted</span></td>
+        </tr>
+
+        <!-- ── ROW 3 ─────────────────────────────────────────── -->
+        <tr>
+          <td class="ruling-date">01/22/2026</td>
+          <td>
+            <a
+              name="docket-title-link"
+              href="/ruling/34-2019-00258741"
+              data-case="34-2019-00258741"
+            >VALLEY SUPPLY CO.</a>
+            <div style="font-size:11px;color:#888;margin-top:2px;">
+              VALLEY SUPPLY CO. v. PLACER COUNTY — Demurrer
+            </div>
+          </td>
+          <td><span class="ruling-type">Demurrer</span></td>
+          <td><span class="ruling-outcome outcome-mixed">Mixed</span></td>
+        </tr>
+
+        <!-- ── ROW 4 ─────────────────────────────────────────── -->
+        <tr>
+          <td class="ruling-date">12/08/2025</td>
+          <td>
+            <a
+              name="docket-title-link"
+              href="/ruling/34-2020-00284113"
+              data-case="34-2020-00284113"
+            >SUNRISE FOODS INC.</a>
+            <div style="font-size:11px;color:#888;margin-top:2px;">
+              SUNRISE FOODS INC. v. DEPT. OF AGRICULTURE — Injunction
+            </div>
+          </td>
+          <td><span class="ruling-type">Injunction</span></td>
+          <td><span class="ruling-outcome outcome-denied">Denied</span></td>
+        </tr>
+
+        <!-- ── ROW 5 ─────────────────────────────────────────── -->
+        <tr>
+          <td class="ruling-date">11/14/2025</td>
+          <td>
+            <a
+              name="docket-title-link"
+              href="/ruling/34-2022-00318509"
+              data-case="34-2022-00318509"
+            >GOLDEN STATE BUILDERS</a>
+            <div style="font-size:11px;color:#888;margin-top:2px;">
+              GOLDEN STATE BUILDERS v. EL DORADO COUNTY — Motion for New Trial
+            </div>
+          </td>
+          <td><span class="ruling-type">Motion</span></td>
+          <td><span class="ruling-outcome outcome-pending">Pending</span></td>
+        </tr>
+
+        <!-- ── ROW 6 ─────────────────────────────────────────── -->
+        <tr>
+          <td class="ruling-date">10/03/2025</td>
+          <td>
+            <a
+              name="docket-title-link"
+              href="/ruling/34-2018-00211674"
+              data-case="34-2018-00211674"
+            >SIERRA NEVADA PROPERTIES</a>
+            <div style="font-size:11px;color:#888;margin-top:2px;">
+              SIERRA NEVADA PROPERTIES v. CITY OF FOLSOM — Demurrer
+            </div>
+          </td>
+          <td><span class="ruling-type">Demurrer</span></td>
+          <td><span class="ruling-outcome outcome-granted">Granted</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>›</button>
+    </div>
+  </div>
+
+  <!-- Click feedback -->
+  <div id="click-result"></div>
+
+  <script>
+    // Intercept link clicks so we don't navigate away (test page stays live)
+    document.getElementById('rulings-table').addEventListener('click', function(e) {
+      var a = e.target.closest('a[name="docket-title-link"]');
+      if (!a) return;
+      e.preventDefault();
+      var result = document.getElementById('click-result');
+      result.textContent = '✓ Clicked: ' + a.textContent.trim() + ' (' + a.getAttribute('href') + ')';
+      result.className = 'show';
+      setTimeout(function() { result.className = ''; }, 4000);
+    });
+
+    // Search button — just filters rows by case name text
+    document.getElementById('search-btn').addEventListener('click', function() {
+      var q = document.getElementById('ruling-search').value.toLowerCase();
+      var type = document.getElementById('ruling-type-filter').value.toLowerCase();
+      document.querySelectorAll('#rulings-table tbody tr').forEach(function(row) {
+        var name = row.querySelector('a[name="docket-title-link"]')?.textContent.toLowerCase() || '';
+        var rtype = row.querySelector('.ruling-type')?.textContent.toLowerCase() || '';
+        var matchName = !q || name.includes(q);
+        var matchType = !type || rtype.includes(type);
+        row.style.display = (matchName && matchType) ? '' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>archetype</title></head>
+<body>
+<!-- Simulates HubSpot's hidden "archetype" tracking iframe.
+     Intentionally minimal — it just needs to exist as window.frames[0]
+     so the recorder's frame ordering fix can be verified.
+
+     Key difference from Judge Bio iframe:
+       title="archetype"  (not "Judge Bio")
+       Injected into document.body BEFORE the real iframe
+       → occupies window.frames[0]
+-->
+</body>
+</html>
